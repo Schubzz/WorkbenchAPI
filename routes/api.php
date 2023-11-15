@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\DeleteController;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TasksController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +21,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Public Routes
+
+Route::post('/register', RegisterController::class);
+
+Route::post('/login', LoginController::class);
+
+// Protected Routes
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::resource('/projects', ProjectsController::class);
+    Route::resource('/tasks', TasksController::class);
+
+    Route::post('/upload-profile-image', [FileController::class, 'uploadProfileImage']);
+    Route::get('/get-profile-image/{userId}', [FileController::class, 'getProfileImage']);
+    Route::delete('/delete-profile-image', [FileController::class, 'deleteProfileImage']);
+
+    Route::get('/logout', LogoutController::class);
+    Route::delete('/delete-account', [DeleteController::class, 'deleteAccount']);
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+
 });
