@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         return response()->json([
             'message' => 'You are now logged in',
-            'user' => $user
-        ]);
+            'user' => $user,
+        ], 200);
     }
 }
