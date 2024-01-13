@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', RegisterController::class);
 
 Route::post('/login', LoginController::class);
+Route::get('/logout', LogoutController::class);
 
 // Protected Routes
 
@@ -38,11 +39,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/get-profile-image/{userId}', [FileController::class, 'getProfileImage']);
     Route::delete('/delete-profile-image', [FileController::class, 'deleteProfileImage']);
 
-    Route::get('/logout', LogoutController::class);
     Route::delete('/delete-account', [DeleteController::class, 'deleteAccount']);
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::get('/user', function (Request $request) {
     return $request->user();
 
 });

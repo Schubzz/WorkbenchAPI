@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('name');
+            $table->string('title');
             $table->string('description');
             $table->string('priority')->default('medium');
             $table->enum('status', ['To-Do', 'In Progress', 'Done'])->default('To-Do');

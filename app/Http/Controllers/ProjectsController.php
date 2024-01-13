@@ -27,7 +27,7 @@ class ProjectsController extends Controller
 
         $project = Project::create([
             'user_id' => Auth::user()->id,
-            'name' => $request->name,
+            'title' => $request->title,
             'description' => $request->description,
             'priority' => $request->priority,
         ]);

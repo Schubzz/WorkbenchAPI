@@ -24,7 +24,7 @@ class TasksController extends Controller
         $task = Task::create([
             'user_id' => Auth::user()->id,
             'project_id' => $request->project_id,
-            'name' => $request->name,
+            'title' => $request->title,
             'description' => $request->description,
             'priority' => $request->priority
         ]);

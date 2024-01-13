@@ -17,7 +17,7 @@ class TasksResource extends JsonResource
         return [
             'id' => (string)$this->id,
             'attributes' => [
-                'name' => $this->name,
+                'title' => $this->title,
                 'description' => $this->description,
                 'priority' => $this->priority,
                 'status' => $this->status,
@@ -32,7 +32,7 @@ class TasksResource extends JsonResource
                 ],
                 'project' => [
                     'id' => (string)$this->project->id,
-                    'name' => $this->project->name,
+                    'title' => $this->project->title,
                     'description' => $this->project->description,
                     'priority' => $this->project->priority,
                     'status' => $this->project->status,
