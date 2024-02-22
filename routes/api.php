@@ -24,7 +24,6 @@ use Illuminate\Support\Facades\Route;
 // Public Routes
 
 Route::post('/register', RegisterController::class);
-
 Route::post('/login', LoginController::class);
 Route::get('/logout', LogoutController::class);
 
