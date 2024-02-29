@@ -12,7 +12,7 @@ class FileController extends Controller
     {
 
         $request->validate([
-            'profile_image' => 'required|image|mimes:jpeg,png,jpg,max:2048',
+            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,max:2048',
         ]);
 
         $user = auth()->user();
@@ -39,11 +39,7 @@ class FileController extends Controller
     {
         $user = User::findOrFail($userId);
 
-        if ($user->profile_image) {
-            $imagePath = storage_path('app/public/' . $user->profile_image);
-        } else {
-            $imagePath = public_path('images/default.jpg');
-        }
+        $imagePath = asset('/storage/' . $user->profile_image);
 
         return response()->json([
             'image_path' => $imagePath,

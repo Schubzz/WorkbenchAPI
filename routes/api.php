@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\DeleteController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -38,7 +38,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/get-profile-image/{userId}', [FileController::class, 'getProfileImage']);
     Route::delete('/delete-profile-image', [FileController::class, 'deleteProfileImage']);
 
-    Route::delete('/delete-account', [DeleteController::class, 'deleteAccount']);
+    Route::delete('/delete-account', [UserController::class, 'deleteAccount']);
+    Route::patch('/update-profile', [UserController::class, 'updateProfile']);
 });
 
 Route::get('/user', function (Request $request) {

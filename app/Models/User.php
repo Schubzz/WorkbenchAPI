@@ -51,4 +51,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
+
+    public function getProfileImageAttribute($value)
+    {
+        return "http://localhost:8000/storage/" . ($value);
+    }
+
 }
