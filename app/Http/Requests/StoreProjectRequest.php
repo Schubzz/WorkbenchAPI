@@ -23,7 +23,7 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required'],
+            'description' => ['nullable', 'string'],
             'priority' => ['required'],
         ];
     }

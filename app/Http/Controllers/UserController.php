@@ -35,7 +35,7 @@ class UserController extends Controller
     public function updateProfile(Request $request): JsonResponse
     {
         $request->validate([
-            'username' => 'nullable|unique:users,username,' . auth()->id(),
+            'username' => 'nullable|min:2|unique:users,username,' . auth()->id(),
             'email' => 'nullable|email|unique:users,email,' . auth()->id(),
         ]);
 
@@ -47,8 +47,10 @@ class UserController extends Controller
             ->where('id', '!=', auth()->id())
             ->exists();
 
-        if ($existingUsername || $existingEmail) {
-            return response()->json(['message' => 'Benutzername oder E-Mail-Adresse bereits vergeben.'], 422);
+        if ($existingUsername) {
+            return response()->json(['message' => 'Username already exists.'], 422);
+        } elseif ($existingEmail) {
+            return response()->json(['message' => 'Email already exists.'], 422);
         }
 
         $user = auth()->user();
@@ -64,6 +66,6 @@ class UserController extends Controller
         $user->save();
 
 
-        return response()->json(['message' => 'Profil erfolgreich aktualisiert.']);
+        return response()->json(['message' => 'profile updated successfully.']);
     }
 }

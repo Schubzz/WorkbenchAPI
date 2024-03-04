@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('project_id');
             $table->string('title');
-            $table->string('description');
+            $table->string('description')-> nullable();
             $table->string('priority')->default('medium');
             $table->enum('status', ['To-Do', 'In Progress', 'Done'])->default('To-Do');
             $table->foreign('user_id')

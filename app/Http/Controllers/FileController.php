@@ -12,7 +12,7 @@ class FileController extends Controller
     {
 
         $request->validate([
-            'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,max:2048',
+            'profile_image' => 'nullable|image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
         $user = auth()->user();
@@ -32,7 +32,8 @@ class FileController extends Controller
             ]);
         }
 
-        return response()->json(['message' => 'No profile image provided.'], 422);
+
+        return response()->json(['message' => 'SHIT'], 422);
     }
 
     public function getProfileImage(Request $request, $userId)
@@ -53,7 +54,7 @@ class FileController extends Controller
 
         if ($user->profile_image) {
             Storage::delete('public/images/profile/' . $user->id . '_profile.jpg');
-            $user->profile_image = 'default.jpg';
+            $user->profile_image = 'images/profile/default.jpg';
             $user->save();
         }
 

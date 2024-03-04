@@ -67,6 +67,7 @@ class ProjectsController extends Controller
         return new ProjectsResource($project);
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
